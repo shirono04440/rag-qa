@@ -16,8 +16,8 @@ def main() -> None:
     ap = argparse.ArgumentParser(description="为指定目录构建检索索引")
     ap.add_argument("--source", required=True, help="要索引的目录")
     ap.add_argument("--out", default="data/index.json")
-    ap.add_argument("--size", type=int, default=420, help="块大小（字符）")
-    ap.add_argument("--overlap", type=int, default=80, help="块间重叠（字符）")
+    ap.add_argument("--size", type=int, default=600, help="块大小（字符）")
+    ap.add_argument("--overlap", type=int, default=120, help="块间重叠（字符）")
     args = ap.parse_args()
 
     t0 = time.perf_counter()
