@@ -72,6 +72,14 @@ python eval.py
 
 复现：`python eval.py -v` 可看到每一题的排名与召回的 Top-3 文件。
 
+### 接上大模型之后
+
+配置 `DEEPSEEK_API_KEY` 后，答案改由模型基于检索片段生成，实测端到端 **770–830 ms**，读起来通顺得多，引用照旧保留：
+
+> 问：怎么打包成 exe
+> 答：在项目根目录执行 `pyinstaller MemoTodo.spec --noconfirm`，产物在 `dist/MemoTodo.exe`。打包后 `todo.db` 会生成在 exe 同目录下，异常写入 `MemoTodo_error.log`。
+> 出处：`README.md:44`、`README.md:75`
+
 ## 答案是怎么来的
 
 两段式，**先保证不编造**：
