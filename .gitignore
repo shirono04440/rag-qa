@@ -1,0 +1,13 @@
+﻿# ---- Python ----
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# ---- 本地临时索引 ----
+data/_test_index.json
+*.log
+
+# ---- IDE ----
+.idea/
+.vscode/
