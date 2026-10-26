@@ -47,12 +47,15 @@ def _clean(sent: str) -> str:
 
 
 def _is_prose(sent: str) -> bool:
-    """过滤掉代码行，只保留可读的中文句子。"""
+    """过滤掉代码行与目录树片段，只保留可读的中文句子。"""
     cjk = sum(1 for ch in sent if "\u4e00" <= ch <= "\u9fff")
     if cjk < 8:
         return False
     code_marks = ("self.", "def ", "import ", "return ", "config[", "print(")
     if any(m in sent for m in code_marks):
+        return False
+    # 目录树片段（├── │ └──）读起来没意义，直接丢掉
+    if any(m in sent for m in ("├", "└", "│")):
         return False
     symbols = sum(1 for ch in sent if ch in "{}[]()=<>;:_|\\")
     return symbols <= max(2, len(sent) // 12)
