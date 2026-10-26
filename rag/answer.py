@@ -57,6 +57,9 @@ def _is_prose(sent: str) -> bool:
     # 目录树片段（├── │ └──）读起来没意义，直接丢掉
     if any(m in sent for m in ("├", "└", "│")):
         return False
+    # 问句不是答案（FAQ 类文档里「Q …？」行会抢分）
+    if sent.rstrip().endswith(("？", "?")):
+        return False
     symbols = sum(1 for ch in sent if ch in "{}[]()=<>;:_|\\")
     return symbols <= max(2, len(sent) // 12)
 
